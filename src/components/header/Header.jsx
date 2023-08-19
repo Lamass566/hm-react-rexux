@@ -21,9 +21,9 @@ function Header({trash, favourite}){
                 </div>
 
                 <div className="router-link-flex">
-                    {/* <Link className='routerLink' to="/">Home</Link>
+                    <Link className='routerLink' to="/">Home</Link>
                     <Link className='routerLink' to="/cart">Cart</Link>
-                    <Link className='routerLink' to="/favourite">Favourite</Link> */}
+                    <Link className='routerLink' to="/favourite">Favourite</Link>
                 </div>
             </div>
         </div>

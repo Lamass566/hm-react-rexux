@@ -1,18 +1,15 @@
 import Card from "../../components/productCard/Card"
 import { useDispatch, useSelector } from "react-redux"
 import './favoritesPage.scss'
-import { REMOVE_FROM_FAVORITES } from "../../stores/actions"
+import { removeHandler } from "../../stores/actions"
 
 function Favorites(){
 
     const favorites = useSelector(state => state.reducer.favorites)
     const dispatch = useDispatch()
     
-    const removeHandler = (productInfo) => {
-        dispatch({
-            type: REMOVE_FROM_FAVORITES,
-            payload: productInfo
-        })
+    function removeHandlerFunc(productInfo){
+        dispatch(removeHandler(productInfo))
     }
 
     return(
@@ -23,7 +20,7 @@ function Favorites(){
                                     price={info['price']}
                                     url={info['url']}
                                     key={info['id']}
-                                    rhandler={()=> removeHandler(info)}
+                                    rhandler={()=> removeHandlerFunc(info)}
                                     cardType={'selected'}
                                     />)}
         </div>

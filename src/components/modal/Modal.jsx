@@ -11,7 +11,6 @@ function Modal({header, text, children, bg, bgHeader})
         event.preventDefault();
     };
 
-
     const form_status = useSelector(state => state.formReducer.form)
     const dispatch = useDispatch()
 

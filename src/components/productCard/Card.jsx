@@ -12,7 +12,6 @@ function Card({thisCard, name, price, url, fhandler, rhandler, cardType, pageTyp
     const showScreenFunc = () => {
         localStorage.setItem('tempData', JSON.stringify(thisCard));
         dispatch(showScreen())
-
     }
 
     const hideScreenFunc = () => {
@@ -83,7 +82,6 @@ function Card({thisCard, name, price, url, fhandler, rhandler, cardType, pageTyp
         </div>
         </>
     );
-}
-
+    }
 
 export default Card;

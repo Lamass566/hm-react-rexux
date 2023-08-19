@@ -16,3 +16,31 @@ export const showScreen = () =>{
         type: SHOW_FORM
     }
 }
+
+export const addToFavs = (productInfo) => {
+    return{
+        type: ADD_TO_FAVORITES,
+        payload: productInfo
+    }
+}
+
+export const removeHandler = (productInfo) => {
+    return{
+        type: REMOVE_FROM_FAVORITES,
+        payload: productInfo
+    }
+}
+
+export const addToCart = (productInfo) => {
+    return{
+        type: ADD_TO_CART,
+        payload: productInfo
+    }
+}
+
+export const removeHandlerCart = (productInfo) => {
+    return{
+        type: REMOVE_FROM_CART,
+        payload: productInfo
+    }
+}

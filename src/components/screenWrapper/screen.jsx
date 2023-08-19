@@ -1,6 +1,5 @@
-import { useState } from 'react'
 import { useDispatch, useSelector } from "react-redux"
-import { HIDE_FORM, hideScreen } from '../../stores/actions'
+import {hideScreen } from '../../stores/actions'
 import './screen.scss'
 
 function Screen(){

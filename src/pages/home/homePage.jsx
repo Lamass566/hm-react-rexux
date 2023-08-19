@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { ADD_TO_FAVORITES, REMOVE_FROM_FAVORITES } from "../../stores/actions"
+import { addToFavs, removeHandler } from "../../stores/actions"
 import Card from "../../components/productCard/Card"
 import './homePage.scss'
 
@@ -12,22 +12,13 @@ function Home(){
     const favorites = useSelector(state => state.reducer.favorites)
     const favIds = favorites.map(p => p['id'])
 
-
-    const addToFavs = (productInfo) => {
-        dispatch({
-            type: ADD_TO_FAVORITES,
-            payload: productInfo
-        })
+    function addToFavsFunc(productInfo){
+        dispatch(addToFavs(productInfo))
     }
 
-    const removeHandler = (productInfo) => {
-        dispatch({
-            type: REMOVE_FROM_FAVORITES,
-            payload: productInfo
-        })
+    function removeHandlerFunc(productInfo){
+        dispatch(removeHandler(productInfo))
     }
-
-    
 
     useEffect(()=>{
         
@@ -35,7 +26,6 @@ function Home(){
             setProducts(data['products'])
          })
       },[])
-
 
 
     return(
@@ -47,8 +37,8 @@ function Home(){
                                             price={info['price']}
                                             url={info['url']}
                                             key={info['id']}
-                                            fhandler={()=>addToFavs(info)}
-                                            rhandler={()=>removeHandler(info)}
+                                            fhandler={()=>addToFavsFunc(info)}
+                                            rhandler={()=>removeHandlerFunc(info)}
                                             cardType={favIds.includes(info['id']) ? 'selected' : 'notselected'}
                                             />)}
         </div>

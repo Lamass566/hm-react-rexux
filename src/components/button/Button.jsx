@@ -1,7 +1,7 @@
 
 import './Button.scss';
 import PropTypes from 'prop-types';
-import { ADD_TO_CART,REMOVE_FROM_CART } from '../../stores/actions';
+import { addToCart, removeHandlerCart } from '../../stores/actions';
 import { useDispatch, useSelector } from "react-redux"
 
 function Button({children, bg, display, type, closeModal}){
@@ -11,21 +11,14 @@ function Button({children, bg, display, type, closeModal}){
    
     const dispatch = useDispatch();
 
-    function addToCart(productInfo){
-        dispatch({
-            type: ADD_TO_CART,
-            payload: productInfo
-        })
-        
-       
+    function addToCartFunc(productInfo){
+        dispatch(addToCart(productInfo))
     }
 
-    function removeHandlerCart(productInfo){
-        dispatch({
-            type: REMOVE_FROM_CART,
-            payload: productInfo
-        })
+    function removeHandlerFunc(productInfo){
+        dispatch(removeHandlerCart(productInfo))
     }
+
     
     function clickHandler(){
         let data = localStorage.getItem('tempData')
@@ -34,11 +27,11 @@ function Button({children, bg, display, type, closeModal}){
         
         if(type === 'ADD'){
             if(!cartsIds.includes(s["id"]))
-                addToCart(JSON.parse(data))
+                addToCartFunc(JSON.parse(data))
                 closeModal()
         }else 
             if(type === 'REMOVE'){
-                removeHandlerCart(JSON.parse(data))
+                removeHandlerFunc(JSON.parse(data))
                 closeModal()
         }else{
             closeModal()

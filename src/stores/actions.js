@@ -5,6 +5,8 @@ export const REMOVE_FROM_CART = 'REMOVE_CART'
 export const SHOW_FORM = 'SHOW'
 export const HIDE_FORM = 'HIDE'
 
+export const get_posts2 = 'get_posts2'
+
 export const hideScreen = () =>{
     return{
         type: HIDE_FORM
@@ -44,3 +46,9 @@ export const removeHandlerCart = (productInfo) => {
         payload: productInfo
     }
 }
+
+
+  
+//   fetch('api/data.json').then((res)=>res.json()).then((data)=>{
+//     setProducts(data['products'])
+//  })

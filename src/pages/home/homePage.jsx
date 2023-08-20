@@ -1,16 +1,18 @@
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { addToFavs, removeHandler } from "../../stores/actions"
 import Card from "../../components/productCard/Card"
 import './homePage.scss'
-
+import { fetchData } from "../../stores/fetchReducer"
 
 
 function Home(){
-    const [products, setProducts] = useState([])
     const dispatch = useDispatch();
     const favorites = useSelector(state => state.reducer.favorites)
     const favIds = favorites.map(p => p['id'])
+
+    const data = useSelector((state) => state.prodSlice.datas)
+    console.log(data)
 
     function addToFavsFunc(productInfo){
         dispatch(addToFavs(productInfo))
@@ -20,17 +22,15 @@ function Home(){
         dispatch(removeHandler(productInfo))
     }
 
+
     useEffect(()=>{
-        
-        fetch('api/data.json').then((res)=>res.json()).then((data)=>{
-            setProducts(data['products'])
-         })
-      },[])
+        dispatch(fetchData())
+      },[dispatch])
 
 
     return(
         <div className="home">
-                    {products.map(info => <Card
+                    {data.map(info => <Card
                                             thisCard={info}
                                             pageType={'home'}
                                             name={info['name']}

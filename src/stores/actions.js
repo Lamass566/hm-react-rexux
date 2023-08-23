@@ -4,8 +4,7 @@ export const ADD_TO_CART = 'ADD_CART'
 export const REMOVE_FROM_CART = 'REMOVE_CART'
 export const SHOW_FORM = 'SHOW'
 export const HIDE_FORM = 'HIDE'
-
-export const get_posts2 = 'get_posts2'
+export const BUY_PRODUCT = 'BUY_PRODUCT'
 
 export const hideScreen = () =>{
     return{
@@ -16,6 +15,22 @@ export const hideScreen = () =>{
 export const showScreen = () =>{
     return{
         type: SHOW_FORM
+    }
+}
+
+export const setData = (productInfo) =>{
+    return{
+        type: "SET_USERS",
+        payload: productInfo
+    }
+}
+
+export const fetchData = () =>{
+    return(dispatch)=>{
+          fetch('api/data.json')
+          .then((res)=>res.json())
+          .then((data)=>{dispatch(setData(data['products']))
+        })
     }
 }
 
@@ -47,8 +62,8 @@ export const removeHandlerCart = (productInfo) => {
     }
 }
 
-
-  
-//   fetch('api/data.json').then((res)=>res.json()).then((data)=>{
-//     setProducts(data['products'])
-//  })
+export const buyProduct = () => {
+    return{
+        type: BUY_PRODUCT
+    }
+}

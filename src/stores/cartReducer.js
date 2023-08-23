@@ -1,4 +1,4 @@
-import { ADD_TO_CART, REMOVE_FROM_CART } from "./actions"
+import { ADD_TO_CART, REMOVE_FROM_CART, BUY_PRODUCT } from "./actions"
 
 const items = localStorage.getItem('Cart')
 
@@ -14,6 +14,10 @@ function cartReducer(state=defaultState, action){
         case REMOVE_FROM_CART:
             const newFavs = state.cart.filter(product => action.payload['id'] !== product['id'])
             newState = {...state, cart:[...newFavs]}
+            localStorage.setItem('Cart', JSON.stringify(newState))
+            return newState
+        case BUY_PRODUCT:
+            newState = {cart:[]}
             localStorage.setItem('Cart', JSON.stringify(newState))
             return newState
         default:

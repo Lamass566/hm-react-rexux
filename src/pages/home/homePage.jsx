@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { addToFavs, removeHandler } from "../../stores/actions"
 import Card from "../../components/productCard/Card"
 import './homePage.scss'
-import { fetchData } from "../../stores/fetchReducer"
+import { fetchData } from "../../stores/actions"
 
 
 function Home(){
@@ -11,8 +11,7 @@ function Home(){
     const favorites = useSelector(state => state.reducer.favorites)
     const favIds = favorites.map(p => p['id'])
 
-    const data = useSelector((state) => state.prodSlice.datas)
-    console.log(data)
+    const data = useSelector((state) => state.fetchReducer.datas)
 
     function addToFavsFunc(productInfo){
         dispatch(addToFavs(productInfo))

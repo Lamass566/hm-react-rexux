@@ -1,28 +1,14 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
+const defaultState = {datas: []}
 
-const initialState = {
-    datas: []
+function fetchReducer(state=defaultState, action){
+    let newState;
+    switch(action.type){
+        case "SET_USERS":
+            newState =  {...state, datas: action.payload}
+            return newState
+        default:
+            return state
+    }
 }
 
-export const fetchData = createAsyncThunk('data/fetchData', () => {
-    return axios
-    .get('api/data.json')
-    .then((resD) => resD.data['products'])
-    
-})
-const prodSlice = createSlice({
-    name: 'data',
-    initialState,
-    extraReducers: (builder) => {
-        builder
-            .addCase(fetchData.fulfilled, (state, action) => {
-                state.datas = action.payload
-            })
-            .addCase(fetchData.rejected, (state, action) => {
-                console.log(action)
-            })
-    },
-})
-
-export default prodSlice.reducer
+export default fetchReducer

@@ -6,21 +6,21 @@ import { useSelector } from "react-redux"
 
 function Header(){
     const favorites = useSelector(state => state.reducer.favorites)
-    const tempArr = [...favorites]
+    // const tempArr = [...favorites]
 
     const carts = useSelector(state => state.cartReducer.cart)
-    const tempArrCart = [...carts]
+    // const tempArrCart = [...carts]
     return(
         <div className="header">
             <div className='flex'>
                 <div className="icons-container">
                     <span>
                         <Cart/>
-                        <p className='p'>{tempArrCart.length}</p>
+                        <p className='p'>{carts.length}</p>
                     </span>
                     <span>
                         <Star />
-                        <p className='p'>{tempArr.length}</p>
+                        <p className='p'>{favorites.length}</p>
                     </span>
                 </div>
 

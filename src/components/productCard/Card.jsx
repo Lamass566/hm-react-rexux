@@ -6,8 +6,16 @@ import { showScreen, hideScreen } from '../../stores/actions'
 
 
 
-function Card({thisCard, name, price, url, fhandler, rhandler, cardType, pageType}){
+function Card({thisCard, name, price, url, fhandler, rhandler, cardType, pageType, isTable}){
     const dispatch = useDispatch()
+
+    let tableValue = ''
+
+    if(isTable)
+    {
+        tableValue = '--table'
+    }
+
 
     const showScreenFunc = () => {
         localStorage.setItem('tempData', JSON.stringify(thisCard));
@@ -35,13 +43,13 @@ function Card({thisCard, name, price, url, fhandler, rhandler, cardType, pageTyp
             }
         </Modal>
 
-        <div className="product-wrap">
-            <div className="product-item">
+        <div className={`product-wrap${tableValue}`}>
+            <div className={`product-item${tableValue}`}>
             <img alt='img' src={url}/>
                 {
                     pageType === 'home'
-                            ?   <div className='product-buttons'>
-                                    <a href={() => false} className="button" onClick={showScreenFunc}>В корзину</a>
+                            ?   <div className={`product-buttons${tableValue}`}>
+                                    <a href="/#" className={`button${tableValue}`} onClick={showScreenFunc}>В корзину</a>
                                 </div>  
                             :
                                 <span></span>
@@ -49,9 +57,9 @@ function Card({thisCard, name, price, url, fhandler, rhandler, cardType, pageTyp
                 }
                 
             </div>
-            <div className="product-title">
+            <div className={`product-title${tableValue}`}>
                 <p>{name}</p>
-                    <div className="product-flex-info">
+                    <div className={`product-flex-info${tableValue}`}>
                         {
                             pageType === 'home' || pageType === 'fav'
                                     ?

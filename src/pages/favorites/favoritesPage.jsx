@@ -2,6 +2,8 @@ import Card from "../../components/productCard/Card"
 import { useDispatch, useSelector } from "react-redux"
 import './favoritesPage.scss'
 import { removeHandler } from "../../stores/actions"
+import { Context } from "../../Context"
+import { useContext } from "react"
 
 function Favorites(){
 
@@ -12,9 +14,12 @@ function Favorites(){
         dispatch(removeHandler(productInfo))
     }
 
+    const {table} = useContext(Context)
+
     return(
         <div className="favorites">
             {favorites.map(info => <Card
+                                    isTable={table}
                                     pageType={"fav"}
                                     name={info['name']}
                                     price={info['price']}

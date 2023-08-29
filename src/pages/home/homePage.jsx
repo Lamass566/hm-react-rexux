@@ -1,9 +1,10 @@
-import { useEffect } from "react"
+import { useContext, useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { addToFavs, removeHandler } from "../../stores/actions"
 import Card from "../../components/productCard/Card"
 import './homePage.scss'
 import { fetchData } from "../../stores/actions"
+import { Context } from "../../Context"
 
 
 function Home(){
@@ -26,10 +27,19 @@ function Home(){
         dispatch(fetchData())
       },[dispatch])
 
+   const {table, setTable} = useContext(Context)
+
+    const change = () =>{
+        setTable(table => !table)
+        console.log(table)
+    }
 
     return(
+        <>
+        <button onClick={change}>Table format</button>
         <div className="home">
                     {data.map(info => <Card
+                                            isTable={table}
                                             thisCard={info}
                                             pageType={'home'}
                                             name={info['name']}
@@ -41,6 +51,7 @@ function Home(){
                                             cardType={favIds.includes(info['id']) ? 'selected' : 'notselected'}
                                             />)}
         </div>
+        </>
     )
 }
 
